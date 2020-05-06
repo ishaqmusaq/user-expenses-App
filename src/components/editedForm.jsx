@@ -73,7 +73,7 @@ import { editUser } from './store/usersAction';
 
                     <div className='form-control'>
                         <label>ITEMS_DESCRIPTION: </label>
-                        <textarea  placeholder='ITEMS_DESCRIPTION' value={this.state.ITEMS_DESCRIPTION} onChange={this.handleChange} type="text"/>
+                        <textarea  placeholder='ITEMS_DESCRIPTION' name='ITEMS_DESCRIPTION' value={this.state.ITEMS_DESCRIPTION} onChange={this.handleChange} type="text"/>
                         <br />
                     </div>
                     <br /><br />
