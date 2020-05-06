@@ -1,33 +1,49 @@
 import React, { Component } from 'react';
 import{connect} from 'react-redux';
-import {addUser} from './components/store/usersAction';
-import './App.css';
+import {addUser,deleteUser} from './components/store/usersAction';
 import UsersForm from './components/UsersForm';
 import UsersInfo from './components/UsersInfo'
 
 
 
-  class App extends Component {
+  export class App extends Component {
+      
+      
     
 addNewUser = newUser=> {
        this.props.addUser(newUser)
     };
 
+      deleteUser = user_id => {
+          this.props.deleteUser(user_id)
+      };
+      
+      
+
     render () {
+        
         return (
             <div  className='App'>
                 {/*<h1> DAILY EXPENSES<h1/> */}
                 <UsersForm addUser={this.addNewUser}/>
                 <div className='App_user-info'>
-                {this.props.users.map((item,index) => {
+                {this.props.users.map((item) => {
                     
                     return (
-                        <UsersInfo  key={index} ITEMS={item.ITEMS} ITEMS_DESCRIPTION={item.ITEMS_DESCRIPTION} TIME_PURCHASED={item.TIME_PURCHASED}
+                        <UsersInfo  key={item.id}
+                        id={item.id}
+                        ITEMS={item.ITEMS}
+                         ITEMS_DESCRIPTION ={item.ITEMS_DESCRIPTION}
+                          TIME_PURCHASED ={item.TIME_PURCHASED}
                         DATE_PURCHASED= {item.DATE_PURCHASED}
                         LOCATION= {item.LOCATION}
-                        AMOUNT_SPENT= {item.AMOUNT_SPENT}/>
+                        AMOUNT_SPENT= {item.AMOUNT_SPENT}
+                            removeUser={this.deleteUser}
+                        />
+                        
                     );
                      } )}
+                     
                 </div>
 
             </div>
@@ -41,7 +57,8 @@ users:state.users
 })
 
 const mapDispatchToProps={
-addUser:addUser
+addUser:addUser,
+deleteUser:deleteUser
 }
 
 

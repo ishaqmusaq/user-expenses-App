@@ -1,31 +1,37 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import { editUser } from './store/usersAction';
 
-export class UsersForm extends Component {
-    constructor(props){
+
+ class editedForm extends Component {
+    constructor(props) {
         super(props);
-        this.state ={
-            id:'1',
-            ITEMS: '',
-            ITEMS_DESCRIPTION: '',
-            TIME_PURCHASED: '',
-            DATE_PURCHASED: '',
-            LOCATION: '',
-            AMOUNT_SPENT: ''
+        
+        this.state = {
+            ITEMS: props.user.ITEMS,
+            ITEMS_DESCRIPTION: props.user.ITEMS_DESCRIPTION,
+            TIME_PURCHASED: props.user.TIME_PURCHASED,
+            DATE_PURCHASED: props.user.DATE_PURCHASED,
+            LOCATION: props.user.LOCATION,
+            AMOUNT_SPENT: props.user.AMOUNT_SPENT
         };
-      
+         this.id = props.match.params.id
+         
+        
     }
 
-    handleChange = (event) => {
+    handleChange = e => {
         this.setState(
             {
-                [event.target.name]: event.target.value,
+                [e.target.name]: e.target.value,
             }
         );
-
+        console.log(this.state.ITEMS);
     };
-    handleSubmit = (event) => {
-        event.preventDefault();
-        const newUser = {
+    handleSubmit = e => {
+        e.preventDefault();
+        const updatedInfo = {
+            
             ITEMS: this.state.ITEMS,
             ITEMS_DESCRIPTION: this.state.ITEMS_DESCRIPTION,
             TIME_PURCHASED: this.state.TIME_PURCHASED,
@@ -34,8 +40,9 @@ export class UsersForm extends Component {
             AMOUNT_SPENT: this.state.AMOUNT_SPENT,
 
         };
+
             
-        this.props.addUser(newUser);
+        this.props.editUser(this.id , updatedInfo);
         this.setState(
             {
                  ITEMS: '',
@@ -45,9 +52,12 @@ export class UsersForm extends Component {
                 LOCATION: '',
                 AMOUNT_SPENT: ''
             } );
+            
+            this.props.history.push('/');
         };
     
-    render() {
+    
+    render(){
         return (
             <form onSubmit={this.handleSubmit} className='App-user-form'>
                 <div className='container'>
@@ -63,7 +73,7 @@ export class UsersForm extends Component {
 
                     <div className='form-control'>
                         <label>ITEMS_DESCRIPTION: </label>
-                        <textarea  placeholder='ITEMS_DESCRIPTION' name='ITEMS_DESCRIPTION' value={this.state.ITEMS_DESCRIPTION} onChange={this.handleChange} type="text"/>
+                        <textarea  placeholder='ITEMS_DESCRIPTION' value={this.state.ITEMS_DESCRIPTION} onChange={this.handleChange} type="text"/>
                         <br />
                     </div>
                     <br /><br />
@@ -99,4 +109,17 @@ export class UsersForm extends Component {
     }
 }
 
-export default UsersForm;
+const mapStateToProps = (state,ownProps) => ({
+    user: state.users.find(user => user.id === ownProps.match.params.id)
+});
+
+const mapDispatchToProps = {
+    editUser: editUser
+    
+}
+
+
+
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(editedForm);
