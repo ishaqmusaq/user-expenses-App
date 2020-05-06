@@ -82,7 +82,7 @@ export class UsersForm extends Component {
                     <br /><br />
                     <div className='form-control'>
                         <label>LOCATION: </label>
-                        <input placeholder=' location' name='LOCATION' value={this.state.LOCATION} onChange={this.handleChange} type='text' />
+                        <input placeholder=' location' name='LOCATION' value={this.state.LOCATION} onChange={this.handleChange} type='location' />
                         <br />
                     </div>
 
