@@ -1,17 +1,7 @@
 import {v4 as uuid} from 'uuid';
 
 const initialState={
-    users: [{
-        ITEMS: 'Rent',
-        ITEMS_DESCRIPTION: 'house rent',
-        TIME_PURCHASED: '14:00',
-        DATE_PURCHASED: '12/3/2020',
-        LOCATION: 'Accra-ghana',
-        AMOUNT_SPENT: '20.00'
-    }
-
-
-    ]
+    users: [],
 
 
 
@@ -46,7 +36,11 @@ switch (action.type) {
 
                 });
                 return{...state , users:editedForm }
+
+                case 'SET_ALL_USERS':
+                    return{users: action.payload}
     default:
+
         return state;
 }};
 
