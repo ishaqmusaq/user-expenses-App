@@ -1,10 +1,8 @@
-import { firestore } from "firebase";
-
 export const addUser=(user)=>{
     return (dispatch,state, {getFirestore})=>{
         getFirestore()
         .collection("users")
-        .add(user)
+        .add({...user, timestamp : getFirestore().FieldValue.serverTimestamp()})
         .then((doc)=>{
             
             
@@ -50,7 +48,7 @@ export const getAllUsers = () => {
     return (dispatch,state,{getFirestore}) =>{
 getFirestore()
 .collection('users')
-orderBy('name' , 'asc')
+.orderBy('timestamp' , 'asc')
 .onSnapShot(
     (snapshot)=>{
 
