@@ -1,3 +1,4 @@
+
 export const addUser=(user)=>{
     return (dispatch,state, {getFirestore})=>{
         getFirestore()
@@ -37,11 +38,7 @@ export const editUser = (user_id, updated_info) => {
 
         })
     }
-    //{
-      //  type: 'EDIT_USER',
-      //  user_id: user_id,
-       // updated_info:updated_info
-    //}
+    
 };
 
 export const getAllUsers = () => {
@@ -49,7 +46,7 @@ export const getAllUsers = () => {
 getFirestore()
 .collection('users')
 .orderBy('timestamp' , 'asc')
-.onSnapShot(
+.onSnapshot(
     (snapshot)=>{
 
 let users = [];
@@ -64,7 +61,7 @@ dispatch ({
     type: 'SET_ALL_USERS',
     payload:users
 })
-
+ 
 },
 (err) => {
 
