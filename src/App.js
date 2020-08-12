@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import{connect} from 'react-redux';
+import {logoutUser} from  './components/store/authAction'
 import {addUser,deleteUser,getAllUsers} from './components/store/usersAction';
 import UsersForm from './components/UsersForm';
 import UsersInfo from './components/UsersInfo'
@@ -28,7 +29,9 @@ this.props.getAllUsers();
         
         return (
             <div  className='App'>
+                <button onClick={this.props.logoutUser}>Loguot</button>
                 {/*<h1> DAILY EXPENSES<h1/> */}
+
                 <UsersForm addUser={this.addNewUser}/>
                 <div className='App_user-info'>
                 {this.props.users.map((item) => {
@@ -56,14 +59,17 @@ this.props.getAllUsers();
 }
 
 
-const mapStateToProps=(state)=>({
-users:state.users
-})
+const mapStateToProps=(state)=>{
+    console.log(state)
+    return {
+users:state.usersState.users
+}; }
 
 const mapDispatchToProps={
 addUser,
 deleteUser,
-getAllUsers
+getAllUsers,
+logoutUser
 }
 
 

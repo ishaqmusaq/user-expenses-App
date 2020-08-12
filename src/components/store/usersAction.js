@@ -45,7 +45,7 @@ export const getAllUsers = () => {
     return (dispatch,state,{getFirestore}) =>{
 getFirestore()
 .collection('users')
-.orderBy('timestamp' , 'asc')
+.orderBy('timestamp' , 'desc')
 .onSnapshot(
     (snapshot)=>{
 

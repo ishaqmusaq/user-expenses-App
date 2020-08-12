@@ -7,7 +7,7 @@ const initialState={
 
 }
 
-const userReducer=(state=initialState,action )=>{
+const usersReducer=(state=initialState,action )=>{
 switch (action.type) {
     case 'ADD_USER':
         const newUser = {
@@ -44,4 +44,4 @@ switch (action.type) {
         return state;
 }};
 
-export default userReducer;
+export default usersReducer;
