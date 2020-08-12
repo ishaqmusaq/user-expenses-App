@@ -29,9 +29,9 @@ this.props.getAllUsers();
         
         return (
             <div  className='App'>
-                <button onClick={this.props.logoutUser}>Loguot</button>
+               
                 {/*<h1> DAILY EXPENSES<h1/> */}
-
+                <button onClick={this.props.logoutUser}>Loguot</button>
                 <UsersForm addUser={this.addNewUser}/>
                 <div className='App_user-info'>
                 {this.props.users.map((item) => {
