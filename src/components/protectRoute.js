@@ -2,7 +2,7 @@ import React from 'react';
 import { connect} from  'react-redux';
 import {Route,Redirect} from 'react-router-dom'
 
- function protectRoute({component : Component,auth, ...rest}) {
+ function ProtectRoute({component : Component, auth , ...rest}) {
      //if user is logged in
 if(!auth.isLoaded) return null;
   if (auth.uid){
@@ -27,11 +27,11 @@ if(!auth.isLoaded) return null;
      );
 }
 
-const mapStateToProps =(state) =>{
+const mapStateToProps = (state) =>{
     return{
-        auth: state.firebse.auth,
+        auth : state.firebase.auth,
     };
 
 };
 
-export default connect(mapStateToProps)(protectRoute);
+export default connect(mapStateToProps)(ProtectRoute);
