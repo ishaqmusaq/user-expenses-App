@@ -34,7 +34,7 @@ function Register(props) {
       </label>
     </div>
                                 </div>
-                                <button type="submit" className="btn btn-primary">Sign in</button>
+                                <button type="submit" className="btn btn-primary">Register</button>
 
                 <hr />
                 <button onClick={props.loginWithGoogle}>
